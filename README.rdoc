@@ -34,6 +34,11 @@ For use with ActiveRecord objects you can provide an argument to call save on ev
 
   products = importer.object(true)
 
+The attributes of ActiveRecord objects are assigned using update_attributes for increased security. 
+
+Beware, that if the model is not an ActiveRecord model mass assigning attributes by CSV column name might impose a security risk if you don't know the exact names of the CSV columns. 
+
+In a next release a stripped down version of active records "attr_accessible" will be bundled with the gem.
 
 == REQUIREMENTS:
 

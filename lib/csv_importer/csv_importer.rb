@@ -1,5 +1,5 @@
 module CSVImporter
-  VERSION = "0.0.1"
+  VERSION = "0.0.2"
   require 'csv'
 
 
@@ -19,14 +19,21 @@ module CSVImporter
     def objects(save=false)
       return @objects if !@objects.nil?
       @objects = Array.new if @object.nil?
+      
       first = true
       @reader.each do |row|
         #TODO: Ruby 1.9 has header option would be nicer instead of this hack.
         if !first
           object = @klass.new
+          active_record = object.respond_to?(:update_attributes)
+          attribute_hash = {} if active_record
           @columns.each_pair do |column, row_number|
-            object.send("#{column}=", row[row_number].strip)
+            value = row[row_number]
+            value = value.strip if !value.nil?
+            object.send("#{column}=", value) if !active_record
+            attribute_hash[column] = value if active_record
           end
+          object.attributes = attribute_hash if active_record
           object.save if save
           @objects << object
         else
