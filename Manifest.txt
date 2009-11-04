@@ -1,0 +1,16 @@
+History.txt
+Manifest.txt
+PostInstall.txt
+Rakefile
+README.rdoc
+lib/csv_importer.rb
+lib/csv_importer/csv_importer.rb
+script/console
+script/destroy
+script/generate
+script/txt2html
+spec/csv/sample.csv
+spec/csv_importer_spec.rb
+spec/spec.opts
+spec/spec_helper.rb
+tasks/rspec.rake

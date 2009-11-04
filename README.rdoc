@@ -1,0 +1,67 @@
+== DESCRIPTION:
+
+Ever needed to import csv files where every row needs to be converted into a model?
+
+The CSV importer turns every row of a CSV file into an object. Each column is matched and tested against a given class.
+You can provide a dictionary with translations between the CSV column names and the object properties.
+
+== FEATURES/PROBLEMS:
+
+* Probably no windows support right now because of different line endings.
+
+== SYNOPSIS:
+
+  require 'csv_importer'
+
+  class Product < Struct.new(:title, :price, :brand, :image); end
+  file = File.open("filename.csv", "rb")
+  importer = CSV_Importer::Importer.new(file, Product)
+  products = importer.objects
+
+or
+
+  require 'csv_importer'
+
+  class Product < Struct.new(:title, :price, :brand, :image); end
+  csv_string = "title, the price, the brand \n jeans, 10, fashionable"
+  dictionary = {"the brand"=>"brand", "the price"=>"price"}
+  importer = CSV_Importer::Importer.new(csv_string, Product, dictionary)
+  products = importer.objects
+  
+For use with ActiveRecord objects you can provide an argument to call save on every product when created
+
+  products = importer.object(true)
+
+
+== REQUIREMENTS:
+
+* This gem uses the standard ruby CSV libary. Ruby 1.9 will have a new library which will probably be compatible.
+
+== INSTALL:
+
+sudo gem install csv_importer
+
+== LICENSE:
+
+(The MIT License)
+
+Copyright (c) 2009 FIXME full name
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
