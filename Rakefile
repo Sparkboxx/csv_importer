@@ -9,8 +9,6 @@ Hoe.plugin :newgem
 # Run 'rake -T' to see list of generated tasks (from gem root directory)
 $hoe = Hoe.spec 'csv_importer' do
   self.developer 'Sparkboxx', 'wilco@sparkboxx.com'
-  self.rubyforge_name       = self.name # TODO this is default value
-
 end
 
 require 'newgem/tasks'

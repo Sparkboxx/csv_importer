@@ -39,13 +39,13 @@ For use with ActiveRecord objects you can provide an argument to call save on ev
 
 == INSTALL:
 
-sudo gem install csv_importer
+  sudo gem install csv_importer
 
 == LICENSE:
 
 (The MIT License)
 
-Copyright (c) 2009 FIXME full name
+Copyright (c) 2009 Sparkboxx
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
