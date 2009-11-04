@@ -1,5 +1,7 @@
 == DESCRIPTION:
 
+http://github.com/sparkboxx/csv-importer
+
 Ever needed to import csv files where every row needs to be converted into a model?
 
 The CSV importer turns every row of a CSV file into an object. Each column is matched and tested against a given class.
