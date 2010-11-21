@@ -1,5 +1,5 @@
 module CSVImporter
-  VERSION = "0.0.3"
+  VERSION = "0.0.4"
   require 'csv'
 
 
@@ -61,7 +61,7 @@ module CSVImporter
       #TODO: Fix repitition in determine_delimiter_and_columns
       comma = first_line.split(",")
       semicolon = first_line.split(";")
-      if comma.count > semicolon.count
+      if comma.size > semicolon.size
         return ",",comma.map!{|c| c.strip.downcase}
       else
         return ";",semicolon.map!{|c| c.strip.downcase}
