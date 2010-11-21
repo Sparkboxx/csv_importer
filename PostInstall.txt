@@ -1,1 +1,1 @@
-For more information on csv_importer, see http://csv_importer.rubyforge.org
+For more information on csv_importer, see http://github.com/sparkboxx/csv_importer

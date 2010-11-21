@@ -2,3 +2,6 @@
 
 * 1 major enhancement:
   * Initial release
+  
+=== 0.0.3 2010-11-20
+* 1 major enhancement, got gem working properly...finally.

@@ -1,6 +1,6 @@
 == DESCRIPTION:
 
-http://github.com/sparkboxx/csv-importer
+http://github.com/sparkboxx/csv_importer
 
 Ever needed to import csv files where every row needs to be converted into a model?
 
@@ -16,29 +16,29 @@ You can provide a dictionary with translations between the CSV column names and 
   require 'csv_importer'
 
   class Product < Struct.new(:title, :price, :brand, :image); end
-  file = File.open("filename.csv", "rb")
-  importer = CSV_Importer::Importer.new(file, Product)
-  products = importer.objects
-
-or
-
-  require 'csv_importer'
-
-  class Product < Struct.new(:title, :price, :brand, :image); end
-  csv_string = "title, the price, the brand \n jeans, 10, fashionable"
-  dictionary = {"the brand"=>"brand", "the price"=>"price"}
-  importer = CSV_Importer::Importer.new(csv_string, Product, dictionary)
-  products = importer.objects
   
-For use with ActiveRecord objects you can provide an argument to call save on every product when created
+  file = File.open("filename.csv", "rb")
+  importer = CSVImporter::Importer.new(file, Product) # Load file and Model
+  importer.objects # Import and return objects
+
+This will look at the first line of filename.csv, and get the column names. It will then try and initialize a Product for each line using the values of the given columns.  
+It does NOT save the objects yet. For use with ActiveRecord objects you can provide an argument to call save on every product when created
 
   products = importer.object(true)
 
-The attributes of ActiveRecord objects are assigned using update_attributes for increased security. 
+The attributes of ActiveRecord objects are assigned using update_attributes for increased security. Beware, that if the model is not an ActiveRecord model mass assigning attributes by CSV column name might impose a security risk if you don't know the exact names of the CSV columns. 
 
-Beware, that if the model is not an ActiveRecord model mass assigning attributes by CSV column name might impose a security risk if you don't know the exact names of the CSV columns. 
 
-In a next release a stripped down version of active records "attr_accessible" will be bundled with the gem.
+You can also use a dictionary to "translate" between the column names in the CSV and the attribute names of your model
+
+  class Product < Struct.new(:title, :price, :brand, :image); end
+  csv_string = "title, the price, the brand \n jeans, 10, fashionable"
+
+  dictionary = {"the brand"=>"brand", "the price"=>"price"}
+
+  importer = CSVImporter::Importer.new(csv_string, Product, dictionary)
+  products = importer.objects
+  
 
 == REQUIREMENTS:
 
@@ -52,7 +52,7 @@ In a next release a stripped down version of active records "attr_accessible" wi
 
 (The MIT License)
 
-Copyright (c) 2009 Sparkboxx
+Copyright (c) 2010 Sparkboxx
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
