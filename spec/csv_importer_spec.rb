@@ -69,7 +69,7 @@ describe "Initialze CSV" do
   it "should create the collection of objects" do
     dictionary = {"Description"=>"title", "Saleprice"=>"Price"}
     importer = Importer.new(File.open(File.dirname(__FILE__)+ "/csv/sample.csv", "rb"), Product, dictionary)
-    importer.objects.count.should == 5 #See spec/csv/sample.csv
+    importer.objects.count.should == 13 #See spec/csv/sample.csv
   end
   
   it "shoud not turn the title line into an object" do
